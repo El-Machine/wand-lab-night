@@ -26,7 +26,7 @@ final class DefaultChatController: ChatController {
 
     private let userId: Int
 
-    var messages: [RawMessage] = []
+    var messages: [Message] = []
 
     init(dataProvider: MessagesProvider, userId: Int) {
         self.dataProvider = dataProvider
@@ -60,15 +60,15 @@ final class DefaultChatController: ChatController {
     }
 
     func sendMessage(_ data: Message.Data, completion: @escaping ([Section]) -> Void) {
-        messages.append(RawMessage(id: UUID(), date: Date(), data: convert(data), userId: userId))
+        messages.append(Message(id: UUID(), date: Date(), data: data, owner: User(id: 0), type: .outgoing))
         propagateLatestMessages { sections in
             completion(sections)
         }
     }
 
-    private func appendConvertingToMessages(_ rawMessages: [RawMessage]) {
+    private func appendConvertingToMessages(_ Messages: [Message]) {
         var messages = self.messages
-        messages.append(contentsOf: rawMessages)
+        messages.append(contentsOf: Messages)
         self.messages = messages.sorted(by: { $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
     }
 
@@ -79,7 +79,7 @@ final class DefaultChatController: ChatController {
                 return
             }
             let messagesSplitByDay = self.messages
-                .map { Message(id: $0.id, date: $0.date, data: self.convert($0.data), owner: User(id: $0.userId), type: $0.userId == self.userId ? .outgoing : .incoming, status: $0.status) }
+                .map { Message(id: $0.id, date: $0.date, data: $0.data, owner: User(id: 0), type: 1 == self.userId ? .outgoing : .incoming, status: $0.status) }
                 .reduce(into: [[Message]]()) { result, message in
                     guard var section = result.last,
                         let prevMessage = section.last else {
@@ -149,47 +149,11 @@ final class DefaultChatController: ChatController {
 
     }
 
-    private func convert(_ data: Message.Data) -> RawMessage.Data {
-        switch data {
-        case let .url(url, isLocallyStored: _):
-            return .url(url)
-        case let .image(source, isLocallyStored: _):
-            return .image(source)
-        case let .text(text):
-            return .text(text)
-        }
-    }
-
-    private func convert(_ data: RawMessage.Data) -> Message.Data {
-        switch data {
-        case let .url(url):
-            let isLocallyStored: Bool
-            if #available(iOS 13, *) {
-                isLocallyStored = metadataCache.isEntityCached(for: url)
-            } else {
-                isLocallyStored = true
-            }
-            return .url(url, isLocallyStored: isLocallyStored)
-        case let .image(source):
-            func isPresentLocally(_ source: ImageMessageSource) -> Bool {
-                switch source {
-                case .image:
-                    return true
-                case let .imageURL(url):
-                    return imageCache.isEntityCached(for: CacheableImageKey(url: url))
-                }
-            }
-            return .image(source, isLocallyStored: isPresentLocally(source))
-        case let .text(text):
-            return .text(text)
-        }
-    }
-
 }
 
 extension DefaultChatController: MessagesProviderDelegate {
 
-    func received(messages: [RawMessage]) {
+    func received(messages: [Message]) {
         appendConvertingToMessages(messages)
         markAllMessagesAsReceived {
             self.markAllMessagesAsRead {

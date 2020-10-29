@@ -1,6 +1,6 @@
 //
 // ChatLayout
-// RawMessage.swift
+// Message.swift
 // https://github.com/ekazaev/ChatLayout
 //
 // Created by Eugene Kazaev in 2020.
@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-struct RawMessage: Hashable {
+struct Message: Hashable {
 
     enum Data: Hashable {
 

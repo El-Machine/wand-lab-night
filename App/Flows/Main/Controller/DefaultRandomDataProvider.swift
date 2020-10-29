@@ -12,7 +12,7 @@ import UIKit
 
 protocol RandomDataProviderDelegate: AnyObject {
 
-    func received(messages: [RawMessage])
+    func received(messages: [Message])
 
     func typingStateChanged(to state: TypingState)
 
@@ -24,9 +24,9 @@ protocol RandomDataProviderDelegate: AnyObject {
 
 protocol RandomDataProvider {
 
-    func loadInitialMessages(completion: @escaping ([RawMessage]) -> Void)
+    func loadInitialMessages(completion: @escaping ([Message]) -> Void)
 
-    func loadPreviousMessages(completion: @escaping ([RawMessage]) -> Void)
+    func loadPreviousMessages(completion: @escaping ([Message]) -> Void)
 
     func stop()
 
@@ -94,7 +94,7 @@ final class DefaultRandomDataProvider: RandomDataProvider {
         self.receiverId = receiverId
     }
 
-    func loadInitialMessages(completion: @escaping ([RawMessage]) -> Void) {
+    func loadInitialMessages(completion: @escaping ([Message]) -> Void) {
         restartMessageTimer()
         restartTypingTimer()
         dispatchQueue.async { [weak self] in
@@ -114,7 +114,7 @@ final class DefaultRandomDataProvider: RandomDataProvider {
         }
     }
 
-    func loadPreviousMessages(completion: @escaping ([RawMessage]) -> Void) {
+    func loadPreviousMessages(completion: @escaping ([Message]) -> Void) {
         dispatchQueue.async { [weak self] in
             guard let self = self else {
                 return
@@ -179,23 +179,23 @@ final class DefaultRandomDataProvider: RandomDataProvider {
         typingTimer = Timer.scheduledTimer(timeInterval: TimeInterval(Int.random(in: 1...3)), target: self, selector: #selector(handleTypingTimer), userInfo: nil, repeats: true)
     }
 
-    private func createRandomMessage(date: Date = Date()) -> RawMessage {
+    private func createRandomMessage(date: Date = Date()) -> Message {
         let sender = allUsersIds[Int.random(in: 0..<allUsersIds.count)]
         lastMessageIndex += 1
         switch (Int.random(in: 0...8), enableRichContent) {
         case (6, true):
-            return RawMessage(id: UUID(), date: date, data: .url(websiteUrls[Int.random(in: 0..<websiteUrls.count)]), userId: sender)
+            return Message(id: UUID(), date: date, data: .url(websiteUrls[Int.random(in: 0..<websiteUrls.count)]), userId: sender)
         case (5, true):
-            return RawMessage(id: UUID(), date: date, data: .image(.imageURL(imageUrls[Int.random(in: 0..<imageUrls.count)])), userId: sender)
+            return Message(id: UUID(), date: date, data: .image(.imageURL(imageUrls[Int.random(in: 0..<imageUrls.count)])), userId: sender)
         case (7, true):
-            return RawMessage(id: UUID(), date: date, data: .image(.image(images[Int.random(in: 0..<images.count)])), userId: sender)
+            return Message(id: UUID(), date: date, data: .image(.image(images[Int.random(in: 0..<images.count)])), userId: sender)
         default:
-            return RawMessage(id: UUID(), date: date, data: .text(TextGenerator.getString(of: 20)), userId: sender)
+            return Message(id: UUID(), date: date, data: .text(TextGenerator.getString(of: 20)), userId: sender)
         }
     }
 
-    private func createBunchOfMessages(number: Int = 50) -> [RawMessage] {
-        let messages = (0..<number).map { _ -> RawMessage in
+    private func createBunchOfMessages(number: Int = 50) -> [Message] {
+        let messages = (0..<number).map { _ -> Message in
             startingTimestamp -= TimeInterval(Int.random(in: 100...1000))
             return self.createRandomMessage(date: Date(timeIntervalSince1970: startingTimestamp))
         }
