@@ -1,0 +1,48 @@
+PODS:
+  - ChatLayout (0.4.5):
+    - ChatLayout/Ultimate (= 0.4.5)
+  - ChatLayout/Core (0.4.5)
+  - ChatLayout/Extras (0.4.5):
+    - ChatLayout/Core
+  - ChatLayout/Ultimate (0.4.5):
+    - ChatLayout/Core
+    - ChatLayout/Extras
+  - DifferenceKit (1.1.5):
+    - DifferenceKit/Core (= 1.1.5)
+    - DifferenceKit/UIKitExtension (= 1.1.5)
+  - DifferenceKit/Core (1.1.5)
+  - DifferenceKit/UIKitExtension (1.1.5):
+    - DifferenceKit/Core
+  - InputBarAccessoryView (5.2.1):
+    - InputBarAccessoryView/Core (= 5.2.1)
+  - InputBarAccessoryView/Core (5.2.1)
+  - Kingfisher (5.15.6):
+    - Kingfisher/Core (= 5.15.6)
+  - Kingfisher/Core (5.15.6)
+  - ReachabilitySwift (5.0.0)
+
+DEPENDENCIES:
+  - ChatLayout
+  - DifferenceKit
+  - InputBarAccessoryView
+  - Kingfisher
+  - ReachabilitySwift
+
+SPEC REPOS:
+  trunk:
+    - ChatLayout
+    - DifferenceKit
+    - InputBarAccessoryView
+    - Kingfisher
+    - ReachabilitySwift
+
+SPEC CHECKSUMS:
+  ChatLayout: 9061a6b890cf1a41fe6ca188aad84a1e02389f61
+  DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
+  InputBarAccessoryView: 39a7ed22727baf3b8550ecdf6c8a4d28b2c6aa91
+  Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+
+PODFILE CHECKSUM: 50b62f25b04244607244ba6a89c2cecf974c2de4
+
+COCOAPODS: 1.9.3
