@@ -50,7 +50,7 @@ class ChatViewController: ViewController {
     private let inputBarView = InputBarAccessoryView()
     
     private lazy var chatController: ChatController = {
-        let dataProvider = DefaultRandomDataProvider(receiverId: 0, usersIds: [1, 2, 3])
+        let dataProvider = MessagesProvider()
         
         let messageController = DefaultChatController(dataProvider: dataProvider, userId: 0)
         messageController.delegate = self
@@ -64,42 +64,11 @@ class ChatViewController: ViewController {
                                         reloadDelegate: chatController as! ReloadDelegate,
                                         editingDelegate: chatController as! EditingAccessoryControllerDelegate)
     }()
-    
-//    let dataProvider = DefaultRandomDataProvider(receiverId: 0, usersIds: [1, 2, 3])
-//    let messageController = DefaultChatController(dataProvider: dataProvider, userId: 0)
-    
-//
-//    let editNotifier = EditNotifier()
-//    let dataSource = DefaultChatCollectionDataSource(editNotifier: editNotifier,
-//                                                     reloadDelegate: messageController,
-//                                                     editingDelegate: messageController)
-//
-//    dataProvider.delegate = messageController
-//
-//    let messageViewController = ChatViewController(chatController: messageController, dataSource: dataSource, editNotifier: editNotifier)
-//    messageController.delegate = messageViewController
-    
-    
-
-//    init(chatController: ChatController,
-//         dataSource: ChatCollectionDataSource,
-//         editNotifier: EditNotifier) {
-//
-//        self.chatController = chatController
-//        self.dataSource = dataSource
-//        self.editNotifier = editNotifier
-//        super.init(nibName: nil, bundle: nil)
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
 
         inputBarView.delegate = self
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Show Keyboard", style: .plain, target: self, action: #selector(ChatViewController.showHideKeyboard))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(ChatViewController.setEditNotEdit))
 
         chatLayout.settings.interItemSpacing = 8
         chatLayout.settings.interSectionSpacing = 8
@@ -138,10 +107,6 @@ class ChatViewController: ViewController {
         }
 
         KeyboardListener.shared.add(delegate: self)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -368,12 +333,6 @@ extension ChatViewController: KeyboardListenerDelegate {
 
                 if let positionSnapshot = positionSnapshot, !self.isUserInitiatedScrolling {
                     self.chatLayout.restoreContentOffset(with: positionSnapshot)
-                }
-                if #available(iOS 13.0, *) {
-                } else {
-                    // When contentInset is changed programmatically IOs 13 calls invalidate context automatically.
-                    // this does not happen in ios 12 so we do it manually
-                    self.collectionView.collectionViewLayout.invalidateLayout()
                 }
             }, completion: { _ in
             })

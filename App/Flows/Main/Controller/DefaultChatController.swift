@@ -14,7 +14,7 @@ final class DefaultChatController: ChatController {
 
     weak var delegate: ChatControllerDelegate?
 
-    private let dataProvider: RandomDataProvider
+    private let dataProvider: MessagesProvider
 
     private var typingState: TypingState = .idle
 
@@ -28,7 +28,7 @@ final class DefaultChatController: ChatController {
 
     var messages: [RawMessage] = []
 
-    init(dataProvider: RandomDataProvider, userId: Int) {
+    init(dataProvider: MessagesProvider, userId: Int) {
         self.dataProvider = dataProvider
         self.userId = userId
     }
@@ -187,7 +187,7 @@ final class DefaultChatController: ChatController {
 
 }
 
-extension DefaultChatController: RandomDataProviderDelegate {
+extension DefaultChatController: MessagesProviderDelegate {
 
     func received(messages: [RawMessage]) {
         appendConvertingToMessages(messages)
