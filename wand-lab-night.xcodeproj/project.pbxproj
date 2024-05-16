@@ -261,7 +261,7 @@
 		61F325D524AB65CF00A96A2F /* TDLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDLib.framework; path = Carthage/Build/iOS/TDLib.framework; sourceTree = "<group>"; };
 		61F325D624AB65CF00A96A2F /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		86AB5A9BDA961E58CCCD82D9 /* Pods-Plugins.release_dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugins.release_dev.xcconfig"; path = "Target Support Files/Pods-Plugins/Pods-Plugins.release_dev.xcconfig"; sourceTree = "<group>"; };
-		8E00935E23EC12BB003A4BC0 /* Psycho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Psycho.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E00935E23EC12BB003A4BC0 /* wand-lab-night.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wand-lab-night.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F93AFEB44CA00931B0798F5 /* Pods-Heap.release_dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Heap.release_dev.xcconfig"; path = "Target Support Files/Pods-Heap/Pods-Heap.release_dev.xcconfig"; sourceTree = "<group>"; };
 		BB7F971D28CE255B85D2ED19 /* Pods-Plugins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugins.debug.xcconfig"; path = "Target Support Files/Pods-Plugins/Pods-Plugins.debug.xcconfig"; sourceTree = "<group>"; };
 		C262433F1FD89E1E67C3106E /* Pods-Psycho.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Psycho.release.xcconfig"; path = "Target Support Files/Pods-Psycho/Pods-Psycho.release.xcconfig"; sourceTree = "<group>"; };
@@ -759,7 +759,7 @@
 		8E00935F23EC12BB003A4BC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8E00935E23EC12BB003A4BC0 /* Psycho.app */,
+				8E00935E23EC12BB003A4BC0 /* wand-lab-night.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -780,9 +780,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8E00935D23EC12BB003A4BC0 /* Psycho */ = {
+		8E00935D23EC12BB003A4BC0 /* wand-lab-night */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8E00937223EC12BE003A4BC0 /* Build configuration list for PBXNativeTarget "Psycho" */;
+			buildConfigurationList = 8E00937223EC12BE003A4BC0 /* Build configuration list for PBXNativeTarget "wand-lab-night" */;
 			buildPhases = (
 				F25D30E11260385EE4979E03 /* [CP] Check Pods Manifest.lock */,
 				8E00935A23EC12BB003A4BC0 /* Sources */,
@@ -795,9 +795,9 @@
 			);
 			dependencies = (
 			);
-			name = Psycho;
+			name = "wand-lab-night";
 			productName = Music;
-			productReference = 8E00935E23EC12BB003A4BC0 /* Psycho.app */;
+			productReference = 8E00935E23EC12BB003A4BC0 /* wand-lab-night.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -815,7 +815,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8E00935923EC12BB003A4BC0 /* Build configuration list for PBXProject "Psycho" */;
+			buildConfigurationList = 8E00935923EC12BB003A4BC0 /* Build configuration list for PBXProject "wand-lab-night" */;
 			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -829,7 +829,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8E00935D23EC12BB003A4BC0 /* Psycho */,
+				8E00935D23EC12BB003A4BC0 /* wand-lab-night */,
 			);
 		};
 /* End PBXProject section */
@@ -1409,7 +1409,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8E00935923EC12BB003A4BC0 /* Build configuration list for PBXProject "Psycho" */ = {
+		8E00935923EC12BB003A4BC0 /* Build configuration list for PBXProject "wand-lab-night" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8E00937023EC12BE003A4BC0 /* Debug */,
@@ -1420,7 +1420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8E00937223EC12BE003A4BC0 /* Build configuration list for PBXNativeTarget "Psycho" */ = {
+		8E00937223EC12BE003A4BC0 /* Build configuration list for PBXNativeTarget "wand-lab-night" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8E00937323EC12BE003A4BC0 /* Debug */,
