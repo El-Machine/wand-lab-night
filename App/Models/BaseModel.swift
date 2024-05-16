@@ -22,6 +22,14 @@ class BaseModel: NSObject {
     var key: String {
         recordName!
     }
+    
+    var creationDate: Date {
+        createRecordIfNeed().creationDate!
+    }
+    
+    var creatorId: String {
+        createRecordIfNeed().creatorUserRecordID!.recordName
+    }
 
     required init(_ record: CKRecord? = nil) {
         super.init()
@@ -39,17 +47,12 @@ class BaseModel: NSObject {
 
     @discardableResult
     func createRecordIfNeed(id: CKRecord.ID? = nil) -> CKRecord {
-        var record = self.record
-        if record == nil {
-            if let id = id {
-                record = CKRecord(recordType: type(), recordID: id)
-            } else {
-                record = CKRecord(recordType: type())
-            }
+        self.record ?? {
+            let record = CKRecord(recordType: type(), recordID: id ?? CKRecord.ID())
             self.record = record
-        }
-
-        return record!
+            
+            return record
+        }()
     }
 
     override func isEqual(_ object: Any?) -> Bool {

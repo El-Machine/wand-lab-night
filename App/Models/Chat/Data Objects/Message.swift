@@ -9,9 +9,10 @@
 
 import ChatLayout
 import DifferenceKit
-import Foundation
 
-enum MessageType: Hashable {
+import CloudKit
+
+enum MessageType: Int {
 
     case incoming
 
@@ -43,7 +44,7 @@ extension ChatItemAlignment {
 
 struct DateGroup: Hashable {
 
-    var id: UUID
+    var id: String
 
     var date: Date
 
@@ -51,7 +52,7 @@ struct DateGroup: Hashable {
         return ChatDateFormatter.shared.string(from: date)
     }
 
-    init(id: UUID, date: Date) {
+    init(id: String, date: Date) {
         self.id = id
         self.date = date
     }
@@ -72,13 +73,13 @@ extension DateGroup: Differentiable {
 
 struct MessageGroup: Hashable {
 
-    var id: UUID
+    var id: String
 
     var title: String
 
     var type: MessageType
 
-    init(id: UUID, title: String, type: MessageType) {
+    init(id: String, title: String, type: MessageType) {
         self.id = id
         self.title = title
         self.type = type
@@ -98,36 +99,26 @@ extension MessageGroup: Differentiable {
 
 }
 
-struct Message: Hashable {
+class Message: BaseModel {
 
-    enum Data: Hashable {
-
-        case text(String)
-
-        case url(URL, isLocallyStored: Bool)
-
-        case image(ImageMessageSource, isLocallyStored: Bool)
-
-    }
-
-    var id: UUID
-
-    var date: Date
-
-    var data: Data
-
-    var owner: User
-
-    var type: MessageType
-
+    var type = MessageType.incoming
     var status: MessageStatus = .sent
+    
+    var text: String? {
+        get {
+            record?["text"]
+        }
+        set {
+            record?["text"] = newValue
+        }
+    }
 
 }
 
 extension Message: Differentiable {
 
     public var differenceIdentifier: Int {
-        return id.hashValue
+        recordName.hashValue
     }
 
     public func isContentEqual(to source: Message) -> Bool {

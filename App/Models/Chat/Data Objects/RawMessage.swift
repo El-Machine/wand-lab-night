@@ -22,7 +22,7 @@ struct Message: Hashable {
 
     }
 
-    var id: UUID
+    var id: MessageString
 
     var date: Date
 

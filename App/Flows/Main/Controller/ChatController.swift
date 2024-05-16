@@ -15,6 +15,6 @@ protocol ChatController {
 
     func loadPreviousMessages(completion: @escaping ([Section]) -> Void)
 
-    func sendMessage(_ data: Message.Data, completion: @escaping ([Section]) -> Void)
+    func sendMessage(_ text: String, completion: @escaping ([Section]) -> Void)
 
 }

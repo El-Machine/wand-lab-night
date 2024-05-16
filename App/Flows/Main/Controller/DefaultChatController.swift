@@ -20,9 +20,9 @@ final class DefaultChatController: ChatController {
 
     private let dispatchQueue = DispatchQueue(label: "DefaultChatController", qos: .userInteractive)
 
-    private var lastReadUUID: UUID?
+    private var lastReadUUID: String?
 
-    private var lastReceivedUUID: UUID?
+    private var lastReceivedUUID: String?
 
     private let userId: Int
 
@@ -59,8 +59,12 @@ final class DefaultChatController: ChatController {
         })
     }
 
-    func sendMessage(_ data: Message.Data, completion: @escaping ([Section]) -> Void) {
-        messages.append(Message(id: UUID(), date: Date(), data: data, owner: User(id: 0), type: .outgoing))
+    func sendMessage(_ text: String, completion: @escaping ([Section]) -> Void) {
+        let message = Message()
+        message.createRecordIfNeed()
+        message.text = text
+        messages.append(message)
+        
         propagateLatestMessages { sections in
             completion(sections)
         }
@@ -69,7 +73,7 @@ final class DefaultChatController: ChatController {
     private func appendConvertingToMessages(_ Messages: [Message]) {
         var messages = self.messages
         messages.append(contentsOf: Messages)
-        self.messages = messages.sorted(by: { $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970 })
+        self.messages = messages.sorted(by: { $0.creationDate.timeIntervalSince1970 < $1.creationDate.timeIntervalSince1970 })
     }
 
     private func propagateLatestMessages(completion: @escaping ([Section]) -> Void) {
@@ -171,7 +175,7 @@ extension DefaultChatController: MessagesProviderDelegate {
         }
     }
 
-    func lastReadIdChanged(to id: UUID) {
+    func lastReadIdChanged(to id: String) {
         lastReadUUID = id
         markAllMessagesAsRead {
             self.propagateLatestMessages { sections in
@@ -180,7 +184,7 @@ extension DefaultChatController: MessagesProviderDelegate {
         }
     }
 
-    func lastReceivedIdChanged(to id: UUID) {
+    func lastReceivedIdChanged(to id: String) {
         lastReceivedUUID = id
         markAllMessagesAsReceived {
             self.propagateLatestMessages { sections in
@@ -253,7 +257,7 @@ extension DefaultChatController: MessagesProviderDelegate {
 
 extension DefaultChatController: ReloadDelegate {
 
-    func reloadMessage(with id: UUID) {
+    func reloadMessage(with id: String) {
         propagateLatestMessages(completion: { sections in
             self.delegate?.update(with: sections)
         })
@@ -263,8 +267,8 @@ extension DefaultChatController: ReloadDelegate {
 
 extension DefaultChatController: EditingAccessoryControllerDelegate {
 
-    func deleteMessage(with id: UUID) {
-        messages = Array(messages.filter { $0.id != id })
+    func deleteMessage(with id: String) {
+        messages = Array(messages.filter { $0.recordName != id })
         propagateLatestMessages(completion: { sections in
             self.delegate?.update(with: sections)
         })
