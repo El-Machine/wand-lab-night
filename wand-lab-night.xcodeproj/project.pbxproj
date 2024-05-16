@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -808,7 +808,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = "El Machine";
+				ORGANIZATIONNAME = "El Machine, Alex Kozin";
 				TargetAttributes = {
 					8E00935D23EC12BB003A4BC0 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -816,7 +816,7 @@
 				};
 			};
 			buildConfigurationList = 8E00935923EC12BB003A4BC0 /* Build configuration list for PBXProject "wand-lab-night" */;
-			compatibilityVersion = "Xcode 11.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
