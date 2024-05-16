@@ -3,7 +3,7 @@
 //  Heap
 //
 //  Created by Alex Kozin on 04.03.2020.
-//  Copyright © 2020 El Machine. All rights reserved.
+11(
 //
 
 import CoreServices

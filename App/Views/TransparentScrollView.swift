@@ -3,7 +3,7 @@
 //  TankUpDriver
 //
 //  Created by Alex Kozin on 20/06/2019.
-//  Copyright © 2019 el-machine. All rights reserved.
+//  Copyright © 2020 El Machine. All rights reserved.
 //
 
 import UIKit

@@ -3,7 +3,7 @@
 //  Heap
 //
 //  Created by Alex Kozin on 03.07.2018.
-//  Copyright © 2018 Bell Integrator. All rights reserved.
+//  Copyright © 2020 El Machine. All rights reserved.
 //
 
 import Foundation

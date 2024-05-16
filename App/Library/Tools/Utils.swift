@@ -3,7 +3,7 @@
 //  Heap
 //
 //  Created by Alexander Kozin on 11.05.16.
-//  Copyright © Tradernet All rights reserved.
+11(
 //
 
 import Foundation

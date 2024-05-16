@@ -3,7 +3,7 @@
 //  Bork
 //
 //  Created by Alex Kozin on 22.09.2020.
-//  Copyright © 2020 Bork. All rights reserved.
+//  Copyright © 2020 El Machine. All rights reserved.
 //
 
 import CoreBluetooth

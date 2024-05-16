@@ -3,7 +3,7 @@
 //  Heap
 //
 //  Created by Alex Kozin on 01.06.2020.
-//  Copyright © 2020 El Machine. All rights reserved.
+11(
 //
 
 import UIKit

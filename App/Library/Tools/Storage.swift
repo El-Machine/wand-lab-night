@@ -3,7 +3,7 @@
 //  Impession
 //
 //  Created by Alex Kozin on 20.03.2018.
-//  Copyright © 2018 el-machine. All rights reserved.
+//  Copyright © 2020 El Machine. All rights reserved.
 //
 
 import CoreData

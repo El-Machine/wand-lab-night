@@ -3,7 +3,7 @@
 //  Heap
 //
 //  Created by Alex Kozin on 31.05.2018.
-//  Copyright © 2018 Genome Ventures. All rights reserved.
+11(
 //
 
 import Foundation

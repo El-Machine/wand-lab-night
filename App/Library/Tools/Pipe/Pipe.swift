@@ -3,7 +3,7 @@
 //  Heap
 //
 //  Created by Alex Kozin on 29.09.2020.
-//  Copyright © 2020 El Machine. All rights reserved.
+11(
 //
 
 struct Box<T: Pipable>: Pipable {
